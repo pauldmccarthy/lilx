@@ -1,0 +1,40 @@
+  lilx - a small DOM XML parser for XML snippets
+
+I originally wrote this for use on a microcontroller which had to talk to a
+particularly micro-unfriendly device that spoke in XML. Last time I checked,
+when compiling for an AVR Atmega128, the final image size of a small test
+program was around 10kb.
+
+lilx supports a very limited form of XML:
+
+  - lilx assumes that the input starts with an opening element (i.e. does
+    not support the typical opening "<?...?>" tag).
+
+  - Element and attribute names must start with an alphanumeric 
+    character.
+
+  - All XML comments are discarded.
+
+  - There is no support for namespaces - if an element or attribute is
+    prefixed with a namespace, the namespace is considered part of the  
+    element attribute/name.
+
+  - Meta-tags (e.g. "<?xml ...", "<!CDATA ..." etc) are not supported.
+
+  - All leading and trailing whitespace in element bodies (e.g. 
+   "<a>\nfoobar\n</a>") is left intact.
+
+Some critical parameters are set by #defines in lilx.h - adjust them for your
+needs. I know, they really should be passed in as function parameters; feel
+free to send me a patch if you feel the need to make this change:
+
+  - LILX_MAX_TOKEN_LENGTH is the maximum possible size of any
+    element/attribute name, and of element/attribute bodies/values.
+
+  - LILX_STACK_SIZE is the maximum XML tree depth; most of the lilx routines
+    are recursive, which can cause problems on a system with only an 8 bit
+    stack. This is not a problem on a PC, so this macro should be set to a
+    large value.
+
+  - LILX_USE_SINGLE_QUOTES tells lilx whether to look for single or double
+    quotes when parsing attribute values.
