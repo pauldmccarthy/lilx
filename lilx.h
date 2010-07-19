@@ -19,14 +19,14 @@
  * the same stack, so if you expect individual elements to have lots of 
  * attributes, increase the stack size.
  */
-#define LILX_STACK_SIZE 10
+#define LILX_STACK_SIZE 100
 
 /**
  * Certain shitty devices (I'm not going to divulge the specific device) wrap
  * attributes in single quotes instead of double quotes. Set this to non-0 to
  * look for single quotes instead of double quotes.
  */
-#define LILX_USE_SINGLE_QUOTES 1
+#define LILX_USE_SINGLE_QUOTES 0
 
 /*******
  * Types
